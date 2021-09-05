@@ -1,0 +1,28 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "temp/index.js",
+  "scripts": {
+    "start:watcher": "npm run knex-migrate:latest && nodemon src/server.js",
+    "knex-migrate:make": "knex migrate:make -x js --knexfile src/db/knexfile.js create-table-product",
+    "knex-migrate:latest": "knex --knexfile src/db/knexfile.js migrate:latest",
+    "knex-migrate:rollback": "knex --knexfile src/db/knexfile.js migrate:rollback",
+    "start:db": "docker-compose --env-file .env.local up --build -d",
+    "start:server": "npm run knex-migrate:latest && node src/server.js",
+    "start:client": "cd ../client && npm run start"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "knex": "^0.95.11",
+    "mysql": "^2.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12",
+    "prettier": "^2.3.2"
+  }
+}
